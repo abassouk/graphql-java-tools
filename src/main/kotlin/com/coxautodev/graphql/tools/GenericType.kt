@@ -9,6 +9,11 @@ import java.lang.reflect.TypeVariable
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.CompletionStage
 import java.util.concurrent.Future
+import org.reactivestreams.Publisher
+import io.reactivex.Maybe
+import io.reactivex.Single
+import io.reactivex.Observable
+import io.reactivex.Flowable
 
 /**
  * @author Andrew Potter
@@ -40,6 +45,12 @@ abstract class GenericType(val baseType: Class<*>) {
                     Future::class.java -> unwrapGenericWrapper(type.actualTypeArguments.first())
                     CompletionStage::class.java -> unwrapGenericWrapper(type.actualTypeArguments.first())
                     CompletableFuture::class.java -> unwrapGenericWrapper(type.actualTypeArguments.first())
+					Publisher::class.java -> unwrapGenericWrapper(type.actualTypeArguments.first())
+					Maybe::class.java -> unwrapGenericWrapper(type.actualTypeArguments.first())
+					Single::class.java -> unwrapGenericWrapper(type.actualTypeArguments.first())
+					Observable::class.java -> unwrapGenericWrapper(type.actualTypeArguments.first())
+					Flowable::class.java -> unwrapGenericWrapper(type.actualTypeArguments.first())
+					Future::class.java -> unwrapGenericWrapper(type.actualTypeArguments.first())
                     else -> type
                 }
             }
